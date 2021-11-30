@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayFragment">
+
+    <TextView
+        android:id="@+id/tvKategori"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kategori"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSpin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSpin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spin hjul"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLiv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Liv:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSpin"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSpin" />
+
+    <TextView
+        android:id="@+id/tvPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Point:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSpin"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSpin" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWordname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tvWordname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ord"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSpin"
+        app:layout_constraintEnd_toEndOf="@+id/tvKategori"
+        app:layout_constraintStart_toStartOf="@+id/tvKategori"
+        app:layout_constraintTop_toTopOf="@+id/rvWordname" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
