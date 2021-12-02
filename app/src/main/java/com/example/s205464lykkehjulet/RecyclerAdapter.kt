@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private var titles = arrayOf("Mad og Drikke", "Steder", "Filmtitler")
-    private var details = arrayOf("Ordet kan være mad eller en drikkevare", "Ordet kan være et kontinen, land, stat, eller en by")
+    private var titles = arrayOf("Mad", "Steder", "Filmtitler")
+    private var details = arrayOf("Ordet kan være madvarer", "Ordet kan være et land, stat, eller by", "Titlen på en film")
     private var images = intArrayOf(R.drawable.madbillede, R.drawable.stedbillede, R.drawable.titelbillede)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -22,6 +24,7 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         holder.itemTitle.text = titles[position]
         holder.itemDetail.text = details[position]
         holder.itemImage.setImageResource(images[position])
+        holder.constraint.setOnClickListener{ Navigation.findNavController(holder.itemView).navigate(R.id.catToPlay) }
     }
 
     override fun getItemCount(): Int {
@@ -32,11 +35,13 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
      var itemImage: ImageView
      var itemTitle: TextView
      var itemDetail: TextView
+     var constraint: ConstraintLayout
 
      init {
          itemImage = itemView.findViewById(R.id.itemImage)
          itemTitle = itemView.findViewById(R.id.itemTitle)
          itemDetail = itemView.findViewById(R.id.itemDetail)
+         constraint = itemView.findViewById(R.id.relativeLayout)
      }
     }
 }

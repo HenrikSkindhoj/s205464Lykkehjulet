@@ -10,8 +10,8 @@
         android:label="fragment_start2"
         tools:layout="@layout/fragment_start" >
         <action
-            android:id="@+id/startToPlay"
-            app:destination="@id/playFragment" />
+            android:id="@+id/startToCat"
+            app:destination="@id/showCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/playFragment"
@@ -48,4 +48,13 @@
         android:name="com.example.s205464lykkehjulet.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/showCategoryFragment"
+        android:name="com.example.s205464lykkehjulet.ShowCategoryFragment"
+        android:label="fragment_show_category"
+        tools:layout="@layout/fragment_show_category" >
+        <action
+            android:id="@+id/catToPlay"
+            app:destination="@id/playFragment" />
+    </fragment>
 </navigation>
