@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.s205464lykkehjulet.databinding.FragmentPlayBinding
 import com.example.s205464lykkehjulet.databinding.FragmentWinBinding
+import java.util.EnumSet.of
+import java.util.List.of
 
 
 class PlayFragment : Fragment(R.layout.fragment_play) {
@@ -35,6 +39,11 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
 
         return view
 
+    }
+
+    fun showCategory(){
+        val DataViewModel = ViewModelProvider(this).get(DataViewModel::class.java)
+        DataViewModel.getWords().observe(this, Observer { <List<Words>})
     }
 
     fun gainPoints(){

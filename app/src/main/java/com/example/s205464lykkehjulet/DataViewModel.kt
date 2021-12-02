@@ -1,9 +1,12 @@
 package com.example.s205464lykkehjulet
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.s205464lykkehjulet.databinding.FragmentPlayBinding
 
 class DataViewModel: ViewModel() {
+
     var playerLives = 5
     var playerPoints = 0
     private var usedLetters: String = ""
@@ -32,19 +35,15 @@ class DataViewModel: ViewModel() {
         hiddenWord = sb.toString()
     }
 
-    /*
-    fun curGameState(): GameState {
+    fun init() {
 
     }
 
-    fun chooseCategory(enum: Words) {
-        Mutablelive
+    private var mWords: MutableLiveData<List<Words>> = MutableLiveData()
+    fun getWords(): LiveData<List<Words>> {
+        var liste = MutableList<Char>()
+        liste.add()
 
+        return mWords
     }
-
-
- */
-
-
-
 }
