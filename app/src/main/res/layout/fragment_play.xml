@@ -7,7 +7,7 @@
     tools:context=".PlayFragment">
 
     <TextView
-        android:id="@+id/tvKategori"
+        android:id="@+id/tvCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kategori"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvLiv"
+        android:id="@+id/tvLife"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Liv:"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonSpin" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvWordname"
+        android:id="@+id/rvCatname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +57,26 @@
         android:layout_height="wrap_content"
         android:text="Ord"
         app:layout_constraintBottom_toBottomOf="@+id/buttonSpin"
-        app:layout_constraintEnd_toEndOf="@+id/tvKategori"
-        app:layout_constraintStart_toStartOf="@+id/tvKategori"
-        app:layout_constraintTop_toTopOf="@+id/rvWordname" />
+        app:layout_constraintEnd_toEndOf="@+id/tvCategory"
+        app:layout_constraintStart_toStartOf="@+id/tvCategory"
+        app:layout_constraintTop_toTopOf="@+id/rvCatname" />
+
+    <TextView
+        android:id="@+id/point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="_"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvPoint"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSpin" />
+
+    <TextView
+        android:id="@+id/life"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="_"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvLife"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSpin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
