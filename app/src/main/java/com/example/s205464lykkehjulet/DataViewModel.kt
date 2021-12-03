@@ -18,14 +18,15 @@ class DataViewModel: ViewModel() {
     var categoryName: String = ""
     var usedLetters: String = ""
     var gueesingWord: Boolean = false
-    var result: Int = 0
     var curSpin: Int = 0
     var pointResult: String = ""
     lateinit var hiddenWord: String
     lateinit var correctWord:String
 
 
-
+    /**
+     * Function for choosing the category and a word from that category
+     */
     fun chooseCategory(enumitem: String ) {
         for(i in Words.values()){
             i.nameOfCategory
@@ -40,6 +41,9 @@ class DataViewModel: ViewModel() {
     }
 
 
+    /**
+     * Function for what should happen when starting a new game
+     */
     fun newGame(): GameState {
         usedLetters = ""
         playerLives = 5
@@ -49,6 +53,9 @@ class DataViewModel: ViewModel() {
     }
 
 
+    /**
+     * Function for hiding word that is chosen to be gueesed
+     */
     fun hideWord(correctWord: String) {
         val sb = StringBuilder()
         correctWord.forEach { char ->
@@ -63,7 +70,9 @@ class DataViewModel: ViewModel() {
         hiddenWord = sb.toString()
     }
 
-
+    /**
+     * Function for choosen what the outcome of spinning the wheel should be
+     */
     fun spin(){
         val wheelList = Random.nextInt(0,14)
         if (wheelList <= 12) {
@@ -138,12 +147,9 @@ class DataViewModel: ViewModel() {
     }
 
 
-
-    fun setHiddenWord() : String{
-        hiddenWord = hideWord(correctWord).toString()
-        return hiddenWord
-    }
-
+    /**
+     * Getter for the gamestate
+     */
     fun getGameState() : GameState {
         if (playerLives == 0){
             return GameState.GameLost

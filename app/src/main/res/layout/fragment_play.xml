@@ -88,8 +88,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/white"
-        android:text="_ _ _ _ _ _ _ A B C D _ _ _ _ _ _ _ "
+        android:text="_ _ _ _ _ _ _ _ _ _ _ _ _ _ "
         app:layout_constraintBottom_toBottomOf="@+id/buttonSpin"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

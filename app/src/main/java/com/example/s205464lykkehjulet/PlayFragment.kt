@@ -21,7 +21,9 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
     val binding get() = _binding!!
     val data: DataViewModel by activityViewModels()
 
-
+    /**
+     * Setting up the view for the play fragment
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,6 +62,9 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
 
     }
 
+    /**
+     * A function for update what happens in the different states of the program
+     */
     fun updateState(gameState: GameState) {
         when (gameState) {
             is GameState.GameLost -> showGameLost()
@@ -83,6 +88,9 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
     }
 
 
+    /**
+     * The function for the process of guessing a letter and spinning the wheel
+     */
     fun playingState(letter: Char): GameState {
         data.usedLetters += "$letter"
         val indexes = mutableListOf<Int>()
