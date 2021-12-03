@@ -10,7 +10,10 @@ import androidx.navigation.Navigation
 import com.example.s205464lykkehjulet.databinding.FragmentLoseBinding
 import com.example.s205464lykkehjulet.databinding.FragmentWinBinding
 
-
+/**
+ * The lose fragment which contains a button to start a new game, and a textView telling the user
+ * that they have lost
+ */
 class LoseFragment : Fragment(R.layout.fragment_lose) {
 
     var _binding: FragmentLoseBinding? = null
@@ -23,9 +26,12 @@ class LoseFragment : Fragment(R.layout.fragment_lose) {
     ): View? {
         _binding = FragmentLoseBinding.inflate(inflater,container,false)
         val view = binding.root
-        binding.ivLose
+        binding.tvLose
         binding.buttonLose
-        binding.buttonLose.setOnClickListener{Navigation.findNavController(view).navigate(R.id.loseToStart)}
+        binding.buttonLose.setOnClickListener{
+            data.newGame()
+            Navigation.findNavController(view).navigate(R.id.loseToStart)
+        }
 
 
         return view

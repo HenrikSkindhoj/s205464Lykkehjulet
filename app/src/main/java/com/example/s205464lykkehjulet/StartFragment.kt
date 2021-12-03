@@ -11,7 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.s205464lykkehjulet.databinding.FragmentStartBinding
 import com.example.s205464lykkehjulet.databinding.FragmentWinBinding
 
-
+/**
+ * The start fragment, which is the home screen, and is set in the navigation to be the first
+ * fragment that is shown
+ */
 class StartFragment : Fragment(R.layout.fragment_start) {
 
     var _binding: FragmentStartBinding? = null
@@ -26,7 +29,8 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         val view = binding.root
         binding.tvStart
         binding.buttonStart
-        binding.buttonStart.setOnClickListener{Navigation.findNavController(view).navigate(R.id.startToCat) }
+        binding.buttonStart.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.startToCat) }
 
 
 

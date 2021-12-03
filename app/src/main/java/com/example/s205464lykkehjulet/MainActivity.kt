@@ -8,6 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.s205464lykkehjulet.databinding.ActivityMainBinding
 
+/**
+ * The main activity, is the only activity and only contains a fragmentView, which makes it possible
+ * to insert and remove elements from the fragments. The main activity works together with the
+ * viewModel
+ */
 class MainActivity : AppCompatActivity() {
 
     lateinit var data: DataViewModel

@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.s205464lykkehjulet.databinding.FragmentShowCategoryBinding
 import com.example.s205464lykkehjulet.databinding.FragmentWinBinding
 
-
+/**
+ * The showcategory fragment which contains a layoutmanager and a adapter,
+ * to create the recyclerView
+ */
 class ShowCategoryFragment : Fragment() {
-    private val data : DataViewModel by activityViewModels()
+    private val gameData : DataViewModel by activityViewModels()
     var _binding: FragmentShowCategoryBinding? = null
     val binding get() = _binding!!
 
@@ -30,7 +33,7 @@ class ShowCategoryFragment : Fragment() {
         _binding = FragmentShowCategoryBinding.inflate(inflater, container,false)
         val view = binding.root
         binding.recyclerView.layoutManager = layoutManager
-        val adapter = RecyclerAdapter()
+        val adapter = RecyclerAdapter(gameData)
         binding.recyclerView.adapter = adapter
 
         return view

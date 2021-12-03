@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/MidnightBlue"
     tools:context=".PlayFragment">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kategori:"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +32,7 @@
         android:id="@+id/tvLife"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Liv:"
         app:layout_constraintBottom_toTopOf="@+id/tvCorrectWord"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +43,7 @@
         android:id="@+id/tvPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Point:"
         app:layout_constraintBottom_toTopOf="@+id/tvCorrectWord"
         app:layout_constraintEnd_toStartOf="@+id/buttonSpin"
@@ -51,6 +55,7 @@
         android:id="@+id/tvUsedLetters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Used Letters: A, B, C, D, E"
         app:layout_constraintBottom_toTopOf="@+id/tvCategory"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +66,7 @@
         android:id="@+id/point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="_"
         app:layout_constraintBottom_toTopOf="@+id/tvCorrectWord"
         app:layout_constraintStart_toEndOf="@+id/tvPoint"
@@ -70,6 +76,7 @@
         android:id="@+id/life"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="_"
         app:layout_constraintBottom_toTopOf="@+id/tvCorrectWord"
         app:layout_constraintStart_toEndOf="@+id/tvLife"
@@ -80,11 +87,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/white"
         android:text="_ _ _ _ _ _ _ A B C D _ _ _ _ _ _ _ "
         app:layout_constraintBottom_toBottomOf="@+id/buttonSpin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/buttonSpin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
+
+    <TextView
+        android:id="@+id/tvWheelResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Wheel result:"
+        app:layout_constraintBottom_toTopOf="@+id/tvCorrectWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPoint" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="_"
+        app:layout_constraintBottom_toTopOf="@+id/tvCorrectWord"
+        app:layout_constraintStart_toEndOf="@+id/tvWheelResult"
+        app:layout_constraintTop_toBottomOf="@+id/tvLife" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

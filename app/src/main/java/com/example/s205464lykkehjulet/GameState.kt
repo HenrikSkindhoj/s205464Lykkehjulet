@@ -1,12 +1,15 @@
 package com.example.s205464lykkehjulet
 
-class GameState {
-/*
+/**
+ * The program is split into 3 states, which determine what is currently happening.
+ */
+sealed class GameState {
+
     class Playing(val usedLetters: String, val hiddenWord: String) : GameState()
 
-    class Lost(val correctWord) : GameState()
+    class GameLost(val correctWord: String) : GameState()
 
-    class Won(val correctWord) : GameState
+    class GameWon(val correctWord: String) : GameState()
 
- */
+
 }

@@ -11,7 +11,10 @@ import com.example.s205464lykkehjulet.databinding.FragmentShowCategoryBinding
 import com.example.s205464lykkehjulet.databinding.FragmentStartBinding
 import com.example.s205464lykkehjulet.databinding.FragmentWinBinding
 
-
+/**
+ * Fragment for the win screen, which contains a button to start a new game, and the textView,
+ * showing that the player has won
+ */
 class WinFragment : Fragment(R.layout.fragment_win) {
 
     var _binding: FragmentWinBinding? = null
@@ -24,9 +27,10 @@ class WinFragment : Fragment(R.layout.fragment_win) {
     ): View? {
         _binding = FragmentWinBinding.inflate(inflater,container,false)
         val view = binding.root
-        binding.ivWin
-        binding.buttonWin
-        binding.buttonWin.setOnClickListener{Navigation.findNavController(view).navigate(R.id.winToStart)}
+        binding.tvWin
+        binding.buttonWin.setOnClickListener{
+            data.newGame()
+            Navigation.findNavController(view).navigate(R.id.winToStart)}
 
 
 

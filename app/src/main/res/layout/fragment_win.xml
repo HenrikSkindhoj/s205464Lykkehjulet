@@ -4,17 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/MidnightBlue"
     tools:context=".WinFragment">
 
-    <ImageView
-        android:id="@+id/ivWin"
-        android:layout_width="288dp"
-        android:layout_height="234dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/youwin" />
 
     <Button
         android:id="@+id/buttonWin"
@@ -22,8 +14,20 @@
         android:layout_height="wrap_content"
         android:text="Spil igen"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/ivWin"
-        app:layout_constraintStart_toStartOf="@+id/ivWin"
-        app:layout_constraintTop_toBottomOf="@+id/ivWin" />
+        app:layout_constraintEnd_toEndOf="@+id/tvWin"
+        app:layout_constraintStart_toStartOf="@+id/tvWin"
+        app:layout_constraintTop_toBottomOf="@+id/tvWin" />
+
+    <TextView
+        android:id="@+id/tvWin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="You Win!!!"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

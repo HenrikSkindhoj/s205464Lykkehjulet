@@ -6,10 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+/**
+ * A recycleradapter used to put information into the category fragment, and the putting a list
+ * of all the categories into the showcategory fragment
+ */
+class RecyclerAdapter(val data: DataViewModel): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private var titles = arrayOf("Mad", "Steder", "Filmtitler")
     private var details = arrayOf("Ordet kan være madvarer", "Ordet kan være et land, stat, eller by", "Titlen på en film")
@@ -24,7 +29,11 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         holder.itemTitle.text = titles[position]
         holder.itemDetail.text = details[position]
         holder.itemImage.setImageResource(images[position])
-        holder.constraint.setOnClickListener{ Navigation.findNavController(holder.itemView).navigate(R.id.catToPlay) }
+        holder.constraint.setOnClickListener{
+            data.chooseCategory(holder.itemTitle.text.toString())
+            Navigation.findNavController(holder.itemView).navigate(R.id.catToPlay)
+
+        }
     }
 
     override fun getItemCount(): Int {
