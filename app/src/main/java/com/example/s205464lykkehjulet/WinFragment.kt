@@ -28,9 +28,7 @@ class WinFragment : Fragment(R.layout.fragment_win) {
         _binding = FragmentWinBinding.inflate(inflater,container,false)
         val view = binding.root
         binding.tvWin
-        binding.buttonWin.setOnClickListener{
-            data.newGame()
-            Navigation.findNavController(view).navigate(R.id.winToStart)}
+        binding.buttonWin.setOnClickListener{Navigation.findNavController(view).navigate(R.id.winToStart)}
 
 
 

@@ -27,11 +27,7 @@ class LoseFragment : Fragment(R.layout.fragment_lose) {
         _binding = FragmentLoseBinding.inflate(inflater,container,false)
         val view = binding.root
         binding.tvLose
-        binding.buttonLose
-        binding.buttonLose.setOnClickListener{
-            data.newGame()
-            Navigation.findNavController(view).navigate(R.id.loseToStart)
-        }
+        binding.buttonLose.setOnClickListener{Navigation.findNavController(view).navigate(R.id.loseToStart)  }
 
 
         return view

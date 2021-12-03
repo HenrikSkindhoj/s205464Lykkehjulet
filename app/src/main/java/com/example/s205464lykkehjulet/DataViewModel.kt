@@ -17,8 +17,10 @@ class DataViewModel: ViewModel() {
     var playerPoints = 0
     var categoryName: String = ""
     var usedLetters: String = ""
-    var activateKeyboard: Boolean = false
-    var result: String = ""
+    var gueesingWord: Boolean = false
+    var result: Int = 0
+    var curSpin: Int = 0
+    var pointResult: String = ""
     lateinit var hiddenWord: String
     lateinit var correctWord:String
 
@@ -38,7 +40,6 @@ class DataViewModel: ViewModel() {
     }
 
 
-
     fun newGame(): GameState {
         usedLetters = ""
         playerLives = 5
@@ -54,9 +55,9 @@ class DataViewModel: ViewModel() {
             if (char == ' ') {
                 sb.append(' ')
             } else if (char == '-') {
-                sb.append("- ")
+                sb.append("-")
             } else {
-                sb.append("_ ")
+                sb.append("_")
             }
         }
         hiddenWord = sb.toString()
@@ -64,14 +65,79 @@ class DataViewModel: ViewModel() {
 
 
     fun spin(){
-        val wheelPrizes = arrayOf("100","300","300","300","100","500","500","500","500","500","500","600","600","800","800","1000","1000","1500","Miss turn","Extra turn","Extra turn","Miss turn","Bankrupt")
-        var randomPrize = Random.nextInt(0,22)
-        result = wheelPrizes[randomPrize]
-        if (randomPrize <= 17) {
-            activateKeyboard = true
+        val wheelList = Random.nextInt(0,14)
+        if (wheelList <= 12) {
+            gueesingWord = true
         }
 
+        when(wheelList){
+            0 -> {
+                curSpin += 100
+                pointResult = "100 points!"
+            }
+            1 -> {
+                curSpin += 200
+                pointResult = "200 points!"
+            }
+            2 -> {
+                curSpin += 400
+                pointResult = "400 points!"
+            }
+            3 -> {
+                curSpin += 600
+                pointResult = "600 points!"
+            }
+            4 -> {
+                curSpin += 700
+                pointResult = "700 points!"
+            }
+            5 -> {
+                curSpin += 800
+                pointResult = "800 points!"
+            }
+            6 -> {
+                curSpin += 900
+                pointResult = "900 points!"
+            }
+            7 -> {
+                curSpin += 300
+                pointResult = "300 points!"
+            }
+            8 -> {
+                curSpin += 1000
+                pointResult = "1000 points!"
+            }
+            9 -> {
+                curSpin += 1100
+                pointResult = "1100 points!"
+            }
+            10 -> {
+                curSpin += 1500
+                pointResult = "1500 points!"
+            }
+            11 -> {
+                curSpin += 1300
+                pointResult = "1300 points!"
+            }
+            12 -> {
+                playerLives = playerLives --
+                pointResult = "You miss a turn :("
+            }
+            13 -> {
+                playerLives = playerLives ++
+                pointResult = "You gain an extra turn!"
+            }
+            14 -> {
+                playerPoints = 0
+                pointResult = "bankrupt :("
+            }
+
+        }
+
+
     }
+
+
 
     fun setHiddenWord() : String{
         hiddenWord = hideWord(correctWord).toString()
@@ -79,12 +145,12 @@ class DataViewModel: ViewModel() {
     }
 
     fun getGameState() : GameState {
-        if (hiddenWord == correctWord){
-            return GameState.GameWon(correctWord)
+        if (playerLives == 0){
+            return GameState.GameLost
         }
 
-        if (playerLives == 0){
-            return GameState.GameLost(correctWord)
+        if (hiddenWord.equals(correctWord,true)){
+            return GameState.GameWon
         }
 
         return GameState.Playing(usedLetters,hiddenWord)

@@ -5,14 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.children
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.s205464lykkehjulet.databinding.FragmentPlayBinding
-import com.example.s205464lykkehjulet.databinding.FragmentWinBinding
-import java.util.EnumSet.of
-import java.util.List.of
 
 /**
  * Fragment for the play screen which switches between the guessing game part of the program and
@@ -31,20 +28,33 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
     ): View? {
         _binding = FragmentPlayBinding.inflate(inflater, container, false)
         val view = binding.root
-        binding.buttonSpin
         binding.tvCategory.setText(data.categoryName)
         binding.tvLife
         binding.tvPoint
-        //binding.tvUsedLetters
-        //binding.tvCorrectWord.setText(data.hiddenWord)
-        binding.life.setText(" "+data.playerLives)
-        binding.point.setText(" "+data.playerPoints)
+
         binding.tvWheelResult
-        binding.result
+        binding.wResult
 
         val gameState = data.newGame()
         updateState(gameState)
 
+
+        binding.lettersLayout.children.forEach { letterView ->
+            if (letterView is TextView) {
+                letterView.setOnClickListener {
+                    val gameState = playingState((letterView).text[0])
+                    data.gueesingWord = false
+                    updateState(gameState)
+                    letterView.visibility = View.GONE
+                }
+            }
+        }
+
+
+        binding.buttonSpin.setOnClickListener {
+            data.spin()
+        updateState(data.getGameState())
+        }
 
         return view
 
@@ -54,15 +64,17 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
         when (gameState) {
             is GameState.GameLost -> showGameLost()
             is GameState.Playing -> {
-                playingState()
-                binding.tvCorrectWord.setText(data.setHiddenWord())
+                binding.tvCorrectWord.setText(data.hiddenWord)
                 binding.tvUsedLetters.setText("Used Letters: ${data.usedLetters}")
-                if (data.activateKeyboard){
+                binding.point.text = " ${data.playerPoints}"
+                binding.life.text = " ${data.playerLives}"
+                binding.wResult.setText(data.pointResult)
+                if (data.gueesingWord){
                     binding.buttonSpin.visibility = View.INVISIBLE
-                    binding.etInput.visibility = View.VISIBLE
+                    binding.lettersLayout.visibility = View.VISIBLE
                 } else {
                     binding.buttonSpin.visibility = View.VISIBLE
-                    binding.etInput.visibility = View.INVISIBLE
+                    binding.lettersLayout.visibility = View.INVISIBLE
                 }
 
             }
@@ -71,65 +83,31 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
     }
 
 
-    fun playingState(): GameState {
-        val guess = binding.etInput.text.toString().toCharArray()[0]
-        if(binding.etInput.text.isNotEmpty()){
-            binding.etInput.toString().lowercase()
-            if (data.usedLetters.contains(guess!!)){
-                return GameState.Playing(data.usedLetters, data.hiddenWord)
-            }
+    fun playingState(letter: Char): GameState {
+        data.usedLetters += "$letter"
+        val indexes = mutableListOf<Int>()
 
-            data.usedLetters += guess
-            val indexes = mutableListOf<Int>()
-
-            data.correctWord.forEachIndexed { index, char ->
-                if(char.equals(guess,true)) {
-                    indexes.add(index)
-                }
+        data.correctWord.forEachIndexed { index, char ->
+            if (char.equals(letter, true)) {
+                indexes.add(index)
             }
-            var newHiddenWord = "" + data.hiddenWord
-            indexes.forEach { index ->
-                val sb = StringBuilder(newHiddenWord).also { it.setCharAt(index, guess) }
-                newHiddenWord = sb.toString()
-            }
-
-            if (indexes.isEmpty()){
-                data.playerLives--
-            }
-            data.hiddenWord = newHiddenWord
-
         }
+        var newHiddenWord = "" + data.hiddenWord
+        indexes.forEach { index ->
+            val sb = StringBuilder(newHiddenWord).also { it.setCharAt(index, letter) }
+            newHiddenWord = sb.toString()
+            data.playerPoints = data.playerPoints + data.curSpin
+        }
+        if (indexes.isEmpty()) {
+            data.playerLives--
+        }
+        data.hiddenWord = newHiddenWord
+        data.curSpin = 0
 
         return data.getGameState()
     }
 
 
-
-    fun gainPoints(){
-        data.playerPoints += 1
-        binding.point
-    }
-
-    fun missTurn(index: Int){
-        if (index==18 || index == 21) {
-            data.playerLives -= 1
-            binding.life
-        }
-    }
-
-    fun extraTurn(index: Int){
-        if (index==19 || index==20) {
-            data.playerLives += 1
-            binding.life
-        }
-    }
-
-    fun bankrupt(index: Int){
-        if(index==22) {
-            data.playerPoints = 0
-            binding.point
-        }
-    }
 
     fun showGameLost() {
         view?.let { Navigation.findNavController(it).navigate(R.id.playToLose) }

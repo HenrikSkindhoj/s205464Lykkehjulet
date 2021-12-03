@@ -28,7 +28,6 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         _binding = FragmentStartBinding.inflate(inflater,container,false)
         val view = binding.root
         binding.tvStart
-        binding.buttonStart
         binding.buttonStart.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.startToCat) }
 

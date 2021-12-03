@@ -7,9 +7,9 @@ sealed class GameState {
 
     class Playing(val usedLetters: String, val hiddenWord: String) : GameState()
 
-    class GameLost(val correctWord: String) : GameState()
+    object GameLost : GameState()
 
-    class GameWon(val correctWord: String) : GameState()
+    object GameWon : GameState()
 
 
 }
