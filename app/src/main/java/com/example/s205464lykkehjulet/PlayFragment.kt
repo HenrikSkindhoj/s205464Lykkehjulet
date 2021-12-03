@@ -41,6 +41,10 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
         updateState(gameState)
 
 
+        /**
+         * The insertion of the letterview  is inspied from the folowing github:
+         * https://github.com/usmaanz/Hangman.git
+         */
         binding.lettersLayout.children.forEach { letterView ->
             if (letterView is TextView) {
                 letterView.setOnClickListener {
@@ -90,6 +94,9 @@ class PlayFragment : Fragment(R.layout.fragment_play) {
 
     /**
      * The function for the process of guessing a letter and spinning the wheel
+     *
+     * The function is inspired by a function from the following github:
+     * https://github.com/usmaanz/Hangman.git
      */
     fun playingState(letter: Char): GameState {
         data.usedLetters += "$letter"
